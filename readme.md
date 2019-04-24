@@ -35,7 +35,9 @@ If you change mysql credentials in .env you have to re-create mysql container:
 - Re-import your database on PhpMyAdmin
 
 # Laravel
+```
 docker-compose build # Build Laravel Dockerfile
 docker-compose up -d # Run all containers
 docker-compose run createapp # Create app in public
 docker-compose exec php php public/artisan [...] # Run Laravel artisan commands
+```

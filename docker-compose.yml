@@ -1,10 +1,13 @@
 version: '3'
 services:
 
-    php: # With Laravel
+    # Note: .env file variables by default are not passed to the docker container at runtime.
+    # The .env file is used for variable substitutions in config files only
+    # However I add it using the 'env_file' directive
+
+    php: # With Laravel installer and some extra scripts
         build: ./docker/laravel
-        env_file:
-            - .env
+        env_file: .env
         volumes:
             - ./docker/php/php.ini:/usr/local/etc/php/php.ini
             - .:/var/www
@@ -12,7 +15,7 @@ services:
     nginx:
         image: atillay/lemp-nginx
         ports:
-            - ${SERVER_PORT}:80
+            - ${EXPOSED_SERVER_PORT}:80
         volumes:
             - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./log:/var/log/nginx
@@ -20,22 +23,20 @@ services:
 
     mysql:
         image: mysql:5.7
-        environment:
-            - MYSQL_ROOT_PASSWORD=StrongPassword
-            - MYSQL_DATABASE=${DB_NAME}
-            - MYSQL_USER=${DB_USER}
-            - MYSQL_PASSWORD=${DB_PASSWORD}
+        env_file: .env
         volumes:
             - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
 
+    # Note: Use MySql users for connecting to PMA interface
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         ports:
-            - ${PMA_PORT}:80
+            - ${EXPOSED_PMA_PORT}:80
         environment:
-            - PMA_HOST=${DB_HOST}
+            PMA_HOST: mysql
 
     maildev:
         image: djfarrelly/maildev
+        env_file: .env
         ports:
-            - ${MAILDEV_PORT}:80
+            - ${EXPOSED_MAILDEV_PORT}:80

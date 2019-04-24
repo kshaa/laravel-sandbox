@@ -26,6 +26,8 @@ services:
         env_file: .env
         volumes:
             - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+            # In case we want to persist the database data
+            #- ./database:/var/lib/mysql
 
     # Note: Use MySql users for connecting to PMA interface
     phpmyadmin:

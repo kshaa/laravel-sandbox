@@ -21,3 +21,6 @@ chown -R www-data:www-data $projectpath
 # find $projectpath -type d -exec chmod 755 {} \; # [Directories] Allow entering, reading, creating for owner, allow entering, listing for group/others
 find $projectpath -type f -exec chmod 666 {} \; # [Files] Allow reading, writing for all
 find $projectpath -type d -exec chmod 777 {} \; # [Directories] Allow entering, listing, creating for all
+
+# This is only for development
+chmod +x $projectpath/artisan

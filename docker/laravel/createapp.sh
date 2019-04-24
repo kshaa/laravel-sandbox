@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-projectpath="code"
+scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+projectpath="$(pwd)/."
 projectname="$1"
 
 if [ -z "$projectname" ]
@@ -10,15 +11,19 @@ then
 fi
 
 echo "Creating application '$projectname' in '$projectpath'"
-if [ ! -d "$projectpath" ]
+if [ -z "$(ls -A $projectpath)" ]
 then
+    # Create named project in named path
     laravel new $projectname
-    mv $projectname $projectpath
+
+    # Move all named path contents to current working directory 
+    mv $projectname/* $projectname/.* $projectpath
+
+    # Remove (the now empty) named directory
+    rm -r $projectname
 else
     echo "Project already exists in '$projectpath', won't re-create."
 fi
 
-echo "Fixing application permissions"
-chown -R www-data:www-data $projectpath
-find $projectpath -type f -exec chmod 644 {} \;
-find $projectpath -type d -exec chmod 755 {} \;
+echo "Running \"Permission setup\""
+bash -c "$scriptdir/fixpermissions.sh"

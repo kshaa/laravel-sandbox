@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-RUNDIR="$( pwd )"
+scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+rundir="$( pwd )"
 
 action_command="$1"
-action_file="$SCRIPTDIR/${action_command}.sh"
+action_file="$scriptdir/${action_command}.sh"
 
 # Set Workdir
-echo "Running at $RUNDIR"
-cd $RUNDIR
+echo "Running at $rundir"
+cd $rundir
 
 # Run appropriate command
 if [ -f "${action_file}" ]
@@ -16,11 +16,8 @@ then
     # Ignore the first given parameter for this script (the bash script name)
     shift
 
-    # Will run the bash script and pass all extra parameters 
-    fullcommand="${action_file} \"$*\""
-
-    # Actually run the command
-    bash -c "${fullcommand}"
+    # Run the bash script and pass all extra parameters 
+    bash -c "${action_file} \"$*\""
 else
     # Run something else
     bash -c "$*"

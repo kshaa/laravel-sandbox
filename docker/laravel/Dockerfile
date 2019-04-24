@@ -6,7 +6,9 @@ RUN composer global require laravel/installer
 # Add composer binaries (laravel) to $PATH
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
-# Workdir - same as for atillay/lemp-php
+# Set workdir
+RUN mkdir -p /var/www/public
+WORKDIR "/var/www/public"
 
 # Set up docker entrypoint
 COPY . /var/dockerbin/

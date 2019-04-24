@@ -1,6 +1,6 @@
-# DOCKER LEMP
+# DOCKER LEMP (Laravel)
 - Nginx
-- PHP 7.2-fpm
+- PHP 7.2-fpm (+ laravel installer + initscript)
 - MySQL
 - PHPMyAdmin
 - Maildev

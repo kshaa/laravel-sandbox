@@ -1,4 +1,7 @@
 # DOCKER LEMP (Laravel)
+Forked from [atillay/docker-lemp](https://github.com/atillay/docker-lemp)
+
+# Services
 - Nginx
 - PHP 7.2-fpm (+ laravel installer + initscript)
 - MySQL

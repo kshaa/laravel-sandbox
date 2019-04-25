@@ -17,7 +17,7 @@ then
     shift
 
     # Run artisan w/ given commands
-    bash -c "php artisan \"$*\""
+    bash -c "php artisan $*"
 elif [ -f "${action_file}" ]
 then
     # Ignore the first given parameter for this script (the bash script name)

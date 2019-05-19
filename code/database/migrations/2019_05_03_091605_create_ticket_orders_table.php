@@ -15,6 +15,8 @@ class CreateTicketOrdersTable extends Migration
     {
         Schema::create('ticket_orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('ticket_id')->references('id')->on('tickets');
+            $table->integer('order_id')->references('id')->on('orders');
             $table->timestamps();
         });
     }

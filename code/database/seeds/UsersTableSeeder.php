@@ -17,5 +17,9 @@ class UsersTableSeeder extends Seeder
                            'email' => 'admin@ticketsys.test', 
                            'password' => bcrypt('secret'),
                            'role' => 2));
+        User::create(array('name' => 'John Doe',
+                           'email' => 'john@ticketsys.test', 
+                           'password' => bcrypt('secret'),
+                           'role' => 1));
     }
 }

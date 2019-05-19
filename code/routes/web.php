@@ -25,3 +25,8 @@ Route::post('events/search','EventsController@postSearch');
 Route::get('cart', 'CartController@index');
 Route::get('cart/add/{id}', 'CartController@add');
 Route::get('cart/remove/{id}', 'CartController@remove');
+
+Route::get('orders', 'OrderController@listing');
+Route::get('orders/info/{id}', 'OrderController@details');
+Route::get('orders/create', 'OrderController@create');
+Route::post('orders/place', 'OrderController@store', [ 'middleware' => 'web' ]);

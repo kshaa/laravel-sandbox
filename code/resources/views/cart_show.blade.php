@@ -36,6 +36,11 @@
                         </tr>                        
                         </tbody>
                     </table>
+                    @if(count($tickets) > 0)
+                    <td>
+                        <a class="btn btn-primary btn-sm" href='{{ url('orders/create') }}'>Complete Order</a>
+                    </td>
+                    @endif
                 </div>
                 </div>
             </div>
